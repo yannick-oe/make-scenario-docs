@@ -1,0 +1,56 @@
+{
+  "name": "Demo: Lead Capture to CRM",
+  "metadata": {
+    "owner": "Team Automation",
+    "created": "2025-01-15",
+    "description": "Collects webform leads, validates email, creates contact in CRM, sends Slack alert."
+  },
+  "modules": [
+    {
+      "id": "1",
+      "name": "Webform Trigger",
+      "type": "trigger.webhook",
+      "notes": "Public webhook; rate-limited."
+    },
+    {
+      "id": "2",
+      "name": "Validate Email",
+      "type": "tools.email-validate",
+      "notes": "Reject disposable domains."
+    },
+    {
+      "id": "3",
+      "name": "Create Contact",
+      "type": "crm.create",
+      "notes": "Upsert by email."
+    },
+    {
+      "id": "4",
+      "name": "Slack Notify",
+      "type": "slack.post",
+      "notes": "Post to #sales-leads."
+    }
+  ],
+  "connections": [
+    {
+      "source": "1",
+      "target": "2",
+      "label": "on submit"
+    },
+    {
+      "source": "2",
+      "target": "3",
+      "label": "valid"
+    },
+    {
+      "source": "2",
+      "target": "4",
+      "label": "invalid -> alert"
+    },
+    {
+      "source": "3",
+      "target": "4",
+      "label": "created"
+    }
+  ]
+}
