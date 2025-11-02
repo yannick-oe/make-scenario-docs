@@ -1,3 +1,7 @@
+![Build Status](https://img.shields.io/github/actions/workflow/status/yannick-oe/make-scenario-docs/ci.yml?branch=main)
+![Python](https://img.shields.io/badge/python-3.10%2B-blue)
+![License](https://img.shields.io/github/license/yannick-oe/make-scenario-docs)
+
 # make-scenario-docs 🧩
 **Make.com Scenario → Auto-Documentation (Markdown + Mermaid)**
 
@@ -57,10 +61,11 @@ Ensures Markdown and Mermaid output is correctly produced from sample scenarios
 
 🧠 How to use with your own scenarios
 
-In Make.com, export your scenario as a JSON file.
-Upload it to the folder: sample_scenarios/
-Generate documentation:
-  python -m make_doc.cli sample_scenarios/your_scenario.json -o docs -n your_scenario.md
-Commit the resulting Markdown file in docs/ to your repository.
+1. In Make.com, export your scenario as a JSON file.
+2. Upload it to the folder: sample_scenarios/
+3. Generate documentation:
+    python -m make_doc.cli sample_scenarios/your_scenario.json -o docs -n your_scenario.md
+4. Commit the resulting Markdown file in docs/ to your repository.
+
 Security note: This tool reads local JSON only.
 No API keys or external connections are required.
